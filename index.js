@@ -1,7 +1,6 @@
 const fs = require("fs");
 const faker = require("faker");
 const { yourPath } = require("./config");
-const { lorem } = require("faker");
 
 const makeDir = (yourPathTo, directoryName) => {
   fs.mkdir(`${yourPathTo}${directoryName}`, { recursive: true }, (err) => {
