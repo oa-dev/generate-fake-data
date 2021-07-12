@@ -1,14 +1,8 @@
 const fs = require("fs");
 const faker = require("faker");
 const { yourPath } = require("./config");
-
-const makeDir = (yourPathTo, directoryName) => {
-  fs.mkdir(`${yourPathTo}${directoryName}`, { recursive: true }, (err) => {
-    if (err) throw err;
-  });
-};
-
-// makeDir(yourPath, "fake-users");
+const directoryName = "fake-users";
+const pathTo = `${yourPath}${directoryName}/`;
 
 const generateUserInfo = () => {
   const id = Math.random() * 1000;
@@ -43,4 +37,27 @@ const mergeUserAndPostData = (amount, data = []) => {
   }
   return data;
 };
-// console.log(mergeUserAndPostData(3));
+
+const makeDir = () => {
+  fs.mkdir(`${pathTo}`, { recursive: true }, (err) => {
+    if (err) throw err;
+  });
+};
+
+const createFile = (fileName, number) => {
+  fs.writeFile(
+    `${pathTo}${fileName}`,
+    JSON.stringify(mergeUserAndPostData(number)),
+    (err) => {
+      if (err) throw err;
+      console.log(`${fileName} has been saved successfully`);
+    }
+  );
+};
+
+const createData = () => {
+  makeDir();
+  createFile("users-posts.json", 100);
+};
+
+createData();
