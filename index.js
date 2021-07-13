@@ -5,7 +5,7 @@ const directoryName = "fake-users";
 const pathTo = `${yourPath}${directoryName}/`;
 
 const generateUserInfo = () => {
-  const id = Math.random() * 1000;
+  const id = (Math.random() * 10).toFixed(6);
   const firstName = faker.name.firstName();
   const lastName = faker.name.lastName();
   const userName = faker.internet.userName();
